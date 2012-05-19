@@ -1,6 +1,6 @@
 # genderizr
 
-A ruby gem to genderize strings.  It owes a little to [JackDanger's](ttps://github.com/JackDanger/) [feminizer](https://github.com/JackDanger/feminizer).
+A ruby gem to genderize strings.  It owes a little to [JackDanger's feminizer](https://github.com/JackDanger/feminizer).
 
 ## Usage
 
