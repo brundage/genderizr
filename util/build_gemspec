@@ -1,8 +1,0 @@
-#!/usr/bin/env ruby
-require 'erb'
-file = ARGV[1] || "genderizr.gemspec"
-erb  = ARGV[0] || file + ".erb"
-
-input = File.open(erb, "r")
-out   = File.open(file, "w")
-out.write( ERB.new( input.read ).result )
