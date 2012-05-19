@@ -1,9 +1,14 @@
 *.gem
 *.rbc
+*.swp
 .bundle
 .config
-coverage
+.yardoc
 InstalledFiles
+_yardoc
+coverage
+doc/
+genderizr.gemspec
 lib/bundler/man
 pkg
 rdoc
@@ -11,9 +16,3 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-*.swp
-
-# YARD artifacts
-.yardoc
-_yardoc
-doc/

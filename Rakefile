@@ -1,37 +1,25 @@
 require 'erb'
-GEMSPEC_FILENAME = "genderizr.gemspec"
-GEMSPEC_BUILDER = "./util/build_gemspec"
+require './lib/genderizr/version'
 
-unless File.exists? GEMSPEC_FILENAME
-  fail "#{GEMSPEC_FILENAME} not found. Run #{GEMSPEC_BUILDER}"
+GEM         = "genderizr-#{Genderizr::VERSION}.gem"
+GEMSPEC     = "genderizr.gemspec"
+GEMSPEC_ERB = GEMSPEC + ".erb"
+FILES       = `git ls-files`.split(/\n/).delete_if { |f| [GEMSPEC].include?(f) }
+
+
+task :build => :default
+task :default => GEM
+
+task :install => GEM do
+  system "gem install #{GEM}"
 end
 
-GEMSPEC_ERB = GEMSPEC_FILENAME + ".erb"
-
-def gemspec(file=GEMSPEC_FILENAME,reload=false)
-  if ( ! @_gemspec || reload )
-    @_gemspec = eval(File.read(file)) rescue nil
-  else
-    @_gemspec
-  end
+file GEM => GEMSPEC do |task|
+  system "gem build -V #{GEMSPEC}"
 end
 
-def gemspec!(file=GEMSPEC_FILENAME)
-  gemspec(file,true)
+file GEMSPEC => FILES do |task|
+  input  = File.open(GEMSPEC_ERB, "r")
+  output = File.open(task.to_s, "w")
+  output.write( ERB.new( input.read ).result )
 end
-
-gemname = "#{gemspec.full_name}.gem"
-
-task :build => [:build_gemspec, gemname]
-task :build_gemspec => GEMSPEC_ERB
-
-file GEMSPEC_FILENAME => GEMSPEC_ERB do
-  system GEMSPEC_BUILDER
-  gemspec!
-end
-
-file gemname => gemspec.files + [GEMSPEC_FILENAME] do
-  system "gem build #{GEMSPEC_FILENAME}"
-  system "gem install #{gemname}"
-end
-
