@@ -4,11 +4,11 @@ A ruby gem to genderize strings.  It owes a little to [JackDanger's feminizer](h
 
 ## Usage
 
-`feminize(string)` replaces masculine words in `string` with their feminine counterparts 
+`Genderizr.feminize(string)` replaces masculine words in `string` with their feminine counterparts 
 
-`masculize(string)` replaces feminine words
+`Genderizr.masculize(string)` replaces feminine words
 
-`genderize(string, turn_feminine)` Feminizes `string` if `turn_feminine` evaluates to `true`, otherwise masculizes `string`.
+`Genderizr.genderize(string, turn_feminine)` Feminizes `string` if `turn_feminine` evaluates to `true`, otherwise masculizes `string`.
 
 ### On its own
 
