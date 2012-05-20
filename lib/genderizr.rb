@@ -1,31 +1,38 @@
 require 'genderizr/version'
+require 'strscan'
+
 module Genderizr
 
   extend self
 
-  def feminize_string(string)
-    genderize_string(string, true)
+  def feminize(string)
+    genderize(string, true)
   end
 
 
-  def genderize_string(string,turn_feminine)
-    string.split(/ /).collect do |word|
+  def genderize(string,turn_feminine)
+    return "" if string.nil?
+    result = ""
+    s = StringScanner.new(string)
+    until s.eos? do
+      word = s.scan(/\w+|\W+/)
       genderized = turn_feminine ? masculine_to_feminine[word] :
                                    feminine_to_masculine[word]
-      genderized || word
-    end.join(' ')
+      result << (genderized.nil? ? word : genderized)
+    end
+    result
   end
 
 
-  def masculize_string(string)
-    genderize_string(string, false)
+  def masculize(string)
+    genderize(string, false)
   end
 
 
   module StringMethods
-    def feminize; Genderizr.feminize_string(self); end
-    def genderize(turn_feminine); Genderizr.feminize_string(self,turn_feminine); end
-    def masculize; Genderizr.masculize_string(self); end
+    def feminize; Genderizr.feminize(self); end
+    def genderize(turn_feminine); Genderizr.genderize(self,turn_feminine); end
+    def masculize; Genderizr.masculize(self); end
   end
 
 
@@ -86,5 +93,5 @@ private
 end
 
 if defined?(Rails) && Rails::VERSION::MAJOR >= 3
-  require 'genderizr/railtie'
+  require 'genderizr/rails'
 end

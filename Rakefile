@@ -1,22 +1,11 @@
+require "bundler/gem_tasks"
+require 'rspec/core/rake_task'
 require 'erb'
 require './lib/genderizr/version'
 
-GEM         = "genderizr-#{Genderizr::VERSION}.gem"
-GEMSPEC     = "genderizr.gemspec"
-FILES       = `git ls-files`.split(/\n/)
+task :default => :build
+task :build => :spec
 
-
-task :build => :default
-task :default => GEM
-
-task :deploy => GEM do
-  system "gem push #{GEM}"
-end
-
-task :install => GEM do
-  system "gem install #{GEM}"
-end
-
-file GEM => FILES do |task|
-  system "gem build -V #{GEMSPEC}"
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = "./spec/*_spec.rb"
 end
