@@ -32,5 +32,5 @@ Now you can do cool stuff like
 ```ruby
 # app/views/users/show.html.erb
 
-<%= @user.name %> <%= "updated his status".genderize(@user.female?) %>
+<%= "#{@user.name} updated his status".genderize(@user.female?) %>
 ```
