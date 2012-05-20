@@ -11,7 +11,11 @@ Gem::Specification.new do |s|
   s.summary     = "Genderize text"
   s.description = "A gem to genderize strings"
 
-  s.files         = [ '.gitignore', 'README.md', 'Rakefile', 'genderizr.gemspec.erb', 'lib/genderizr.rb', 'lib/genderizr/railtie.rb', 'lib/genderizr/version.rb' ]
+  s.files         = [ 'README.md',
+                      'Rakefile',
+                      'lib/genderizr.rb',
+                      'lib/genderizr/railtie.rb',
+                      'lib/genderizr/version.rb' ]
   s.test_files    = [  ]
   s.executables   = [  ]
   s.require_paths = ["lib"]

@@ -3,23 +3,20 @@ require './lib/genderizr/version'
 
 GEM         = "genderizr-#{Genderizr::VERSION}.gem"
 GEMSPEC     = "genderizr.gemspec"
-GEMSPEC_ERB = GEMSPEC + ".erb"
-FILES       = `git ls-files`.split(/\n/).delete_if { |f| [GEMSPEC].include?(f) }
+FILES       = `git ls-files`.split(/\n/)
 
 
 task :build => :default
 task :default => GEM
 
+task :deploy => GEM do
+  system "gem push #{GEM}"
+end
+
 task :install => GEM do
   system "gem install #{GEM}"
 end
 
-file GEM => GEMSPEC do |task|
+file GEM => FILES do |task|
   system "gem build -V #{GEMSPEC}"
-end
-
-file GEMSPEC => FILES do |task|
-  input  = File.open(GEMSPEC_ERB, "r")
-  output = File.open(task.to_s, "w")
-  output.write( ERB.new( input.read ).result )
 end
