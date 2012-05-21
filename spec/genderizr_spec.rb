@@ -1,4 +1,5 @@
-require 'spec_helper'
+$:.unshift(File.dirname(__FILE__) + '/../lib')
+require 'genderizr'
 
 describe Genderizr do
 
@@ -69,7 +70,7 @@ describe Genderizr do
   context "String methods" do
 
     before :all do
-      require 'genderizr/rails'
+      class String; include Genderizr::StringMethods; end
     end
 
     it "behave the same" do

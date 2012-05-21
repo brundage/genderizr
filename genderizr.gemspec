@@ -1,5 +1,5 @@
 $:.push File.expand_path("../lib", __FILE__)
-require "genderizr/version"
+require 'genderizr'
 
 Gem::Specification.new do |s|
   s.name          = "genderizr"

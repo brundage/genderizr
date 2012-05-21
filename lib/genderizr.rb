@@ -1,7 +1,8 @@
-require 'genderizr/version'
 require 'strscan'
 
 module Genderizr
+
+  VERSION = "0.0.6"
 
   extend self
 
@@ -12,13 +13,12 @@ module Genderizr
 
   def genderize(string,turn_feminine)
     return "" if string.nil?
+    lookup = turn_feminine ? masculine_to_feminine : feminine_to_masculine
     result = ""
     s = StringScanner.new(string)
     until s.eos? do
       word = s.scan(/\w+|\W+/)
-      genderized = turn_feminine ? masculine_to_feminine[word] :
-                                   feminine_to_masculine[word]
-      result << (genderized.nil? ? word : genderized)
+      result << (lookup[word].nil? ? word : lookup[word])
     end
     result
   end
@@ -39,7 +39,7 @@ module Genderizr
 private
 
   def feminine_to_masculine
-    masculine_to_feminine.invert
+    @f2m ||= masculine_to_feminine.invert
   end
 
   def masculine_to_feminine
@@ -92,6 +92,6 @@ private
   end
 end
 
-if defined?(Rails) && Rails::VERSION::MAJOR >= 3
-  require 'genderizr/rails'
+if defined?(Rails)
+  class String; include Genderizr::StringMethods; end
 end

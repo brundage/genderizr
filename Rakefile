@@ -1,7 +1,6 @@
 require "bundler/gem_tasks"
 require 'rspec/core/rake_task'
-require 'erb'
-require './lib/genderizr/version'
+require './lib/genderizr'
 
 task :default => :build
 task :build => :spec
