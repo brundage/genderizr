@@ -4,11 +4,11 @@ A ruby gem to genderize strings.  It owes a little to [JackDanger's feminizer](h
 
 ## Usage
 
-`Genderizr.feminize(string)` replaces masculine words in `string` with their feminine counterparts 
+`Genderizr.feminize(string)` replaces masculine words in *string* with their feminine counterparts 
 
 `Genderizr.masculize(string)` replaces feminine words
 
-`Genderizr.genderize(string, turn_feminine)` Feminizes `string` if `turn_feminine` evaluates to `true`, otherwise masculizes `string`.
+`Genderizr.genderize(string, turnFeminine)` Takes a masculine *string* and Feminizes it if *turnFeminine* evaluates to *true*, otherwise masculizes *string*.
 
 ### On its own
 
@@ -25,7 +25,7 @@ A ruby gem to genderize strings.  It owes a little to [JackDanger's feminizer](h
 
 Genderizr monkey-patches the String class... cause that's the Rails Way.
 
-It adds `String#feminize`, `String#genderize(turn_feminine)` and `String#masculize`
+It adds `String#feminize`, `String#genderize(turnFeminine)` and `String#masculize`
 
 Now you can do cool stuff like
 
@@ -33,4 +33,12 @@ Now you can do cool stuff like
 # app/views/users/show.html.erb
 
 <%= "#{@user.name} updated his status".genderize(@user.female?) %>
+```
+Produces
+```
+Dean updated his status.
+```
+or
+```
+Adrienne updated her status.
 ```
