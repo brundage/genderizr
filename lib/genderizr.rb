@@ -21,7 +21,21 @@ module Genderizr
     s = StringScanner.new(string)
     until s.eos? do
       word = s.scan(/\w+|\W+/)
-      result << (lookup[word].nil? ? word : lookup[word])
+
+      if word =~ /^\W+$/
+        result << word
+        next
+      end
+
+      capitalized = (word == word.capitalize)
+      upcased     = (word == word.upcase)
+
+      genderized = (lookup[word.downcase].nil? ? word : lookup[word.downcase])
+
+      genderized = genderized.capitalize if capitalized
+      genderized = genderized.upcase if upcased
+
+      result << genderized
     end
     result
   end

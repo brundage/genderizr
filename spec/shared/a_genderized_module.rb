@@ -54,6 +54,14 @@ shared_examples 'a genderized module' do
     subject.feminize("\t#{MASCULINE}").should eq "	#{FEMININE}"
   end
 
+  it "preserves capitalization" do
+    subject.feminize(MASCULINE.capitalize).should eq FEMININE.capitalize
+  end
+
+  it "preserves upcase" do
+    subject.feminize(MASCULINE.upcase).should eq FEMININE.upcase
+  end
+
   it "deals with multi-word strings" do
     subject.feminize("#{MASCULINE} #{MASCULINE} #{FEMININE}").should eq "#{FEMININE} #{FEMININE} #{FEMININE}"
   end
