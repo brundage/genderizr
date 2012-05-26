@@ -1,9 +1,10 @@
-require "bundler/gem_tasks"
+require 'bundler'
 require 'rspec/core/rake_task'
-require './lib/genderizr'
 
 task :default => :build
 task :build => :spec
+
+Bundler::GemHelper.install_tasks
 
 RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = "./spec/*_spec.rb"
