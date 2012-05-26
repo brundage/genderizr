@@ -1,3 +1,5 @@
+![genderizr image](http://blog.deanbrundage.com/wp-content/uploads/2012/05/genderizr.png)
+
 # genderizr
 
 A ruby gem to genderize strings.  It owes a little to [JackDanger's feminizer](https://github.com/JackDanger/feminizer).
