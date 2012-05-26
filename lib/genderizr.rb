@@ -24,7 +24,7 @@ module Genderizr
       result = ""
       s = StringScanner.new(string)
       until s.eos? do
-        word = s.scan(/\w+\W?|\W+/)
+        word = s.scan(/\w+|\W+/)
         result << (lookup[word].nil? ? word : lookup[word])
       end
       result
@@ -100,6 +100,7 @@ module Genderizr
         'masculine' => 'feminine',
         'masculinity' => 'femininity',
         'men' => 'women',
+        'mister' => 'miss',  # Careful here going from feminine to masculine
         'mr' => 'ms',
         'mr.' => 'ms.',
         'nobleman' => 'noblewoman',
