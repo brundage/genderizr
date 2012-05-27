@@ -15,8 +15,8 @@ Gem::Specification.new do |s|
   s.authors       = ["Dean Brundage"]
   s.email         = ["dean@newrepublicbrewing.com"]
 
-  s.files         = Dir[ 'README.md', 'lib/**/*.rb' ]
-  s.test_files    = Dir[ 'spec/**/*.rb' ]
+  s.files         = [ 'README.md', 'lib/genderizr.rb' ]
+  s.test_files    = [ 'spec/genderizr_spec.rb' ]
   s.require_paths = ["lib"]
 
   s.platform      = Gem::Platform::RUBY
