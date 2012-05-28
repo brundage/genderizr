@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "genderizr"
 
   s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'  # Why doesn't guard-rspec depend on rspec?
 
   s.authors       = ["Dean Brundage"]
