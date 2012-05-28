@@ -5,6 +5,7 @@
 A ruby gem to genderize strings.
 
 [![Build Status](https://secure.travis-ci.org/brundage/genderizr.png)](http://travis-ci.org/brundage/genderizr)
+[![Dependency Status](https://gemnasium.com/brundage/genderizr.png)](https://gemnasium.com/brundage/genderizr)
 
 ## Usage
 
