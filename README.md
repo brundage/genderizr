@@ -2,7 +2,9 @@
 
 # genderizr
 
-A ruby gem to genderize strings.  It owes a little to [JackDanger's feminizer](https://github.com/JackDanger/feminizer).
+A ruby gem to genderize strings.
+
+[![Build Status](https://secure.travis-ci.org/brundage/genderizr.png)](http://travis-ci.org/brundage/genderizr)
 
 ## Usage
 
@@ -44,3 +46,6 @@ or
 ```
 Adrienne updated her status.
 ```
+
+
+This gem pilfered the translation hash from [JackDanger's feminizer](https://github.com/JackDanger/feminizer).
