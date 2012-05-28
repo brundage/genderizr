@@ -73,8 +73,6 @@ private
   def default_m2f_forms
     {
       '♂' => '♀',
-      '⚨' => '♀',
-      '⚩' => '♀',
       '⚣' => '⚢',
       'boy' => 'girl',
       'boyish' => 'girlish',
