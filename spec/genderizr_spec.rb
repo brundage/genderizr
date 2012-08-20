@@ -18,8 +18,8 @@ describe Genderizr do
   end
 
   it "handles a nil argument" do
-    subject.feminize(nil).should eq ""
-    subject.masculize(nil).should eq ""
+    subject.feminize(nil).should eq nil
+    subject.masculize(nil).should eq nil
   end
 
   it "switches genders of a masculine string when requested" do

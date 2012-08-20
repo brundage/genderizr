@@ -3,7 +3,7 @@ require 'strscan'
 
 module Genderizr
 
-  VERSION = '0.1.2'
+  VERSION = '0.1.3'
 
   module StringMethods
     def feminize; Genderizr.feminize(self); end
@@ -19,7 +19,7 @@ module Genderizr
 
 
   def genderize(string,turn_feminine)
-    return "" if string.nil?
+    return if string.nil?
 
     result = ""
     s = StringScanner.new(string)
