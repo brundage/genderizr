@@ -1,15 +1,17 @@
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'genderizr'
 
-MASCULINE = "king"
-FEMININE  = "queen"
-
 describe Genderizr do
 
+  let(:feminine)  { 'queen' }
+  let(:masculine) { 'king' }
+  let(:mr) { 'mr.' }
+  let(:ms) { 'ms.' }
+
   it "doesn't add methods to String by default" do
-    FEMININE.should_not respond_to(:feminize)
-    FEMININE.should_not respond_to(:genderize)
-    FEMININE.should_not respond_to(:masculize)
+    feminine.should_not respond_to(:feminize)
+    feminine.should_not respond_to(:genderize)
+    feminine.should_not respond_to(:masculize)
   end
 
   it "handles a blank string" do
@@ -23,61 +25,60 @@ describe Genderizr do
   end
 
   it "switches genders of a masculine string when requested" do
-    subject.genderize(MASCULINE,true).should eq FEMININE
+    subject.genderize(masculine,true).should eq feminine
   end
 
   it "doesn't switch genders of a masculine string when requested" do
-    subject.genderize(MASCULINE,false).should eq MASCULINE
+    subject.genderize(masculine,false).should eq masculine
   end
 
   it "switches genders of a feminine string when requested" do
-    subject.genderize(FEMININE,false).should eq MASCULINE
+    subject.genderize(feminine,false).should eq masculine
   end
 
   it "doesn't switch genders of a feminine string when requested" do
-    subject.genderize(FEMININE,true).should eq FEMININE
+    subject.genderize(feminine,true).should eq feminine
   end
 
   it "does the same thing with the explicit and generic method calls" do
-    subject.feminize(MASCULINE).should eq subject.genderize(MASCULINE,true)
-    subject.feminize(FEMININE).should eq subject.genderize(FEMININE,true)
-    subject.masculize(MASCULINE).should eq subject.genderize(MASCULINE,false)
-    subject.masculize(FEMININE).should eq subject.genderize(FEMININE,false)
+    subject.feminize(masculine).should eq subject.genderize(masculine,true)
+    subject.feminize(feminine).should eq subject.genderize(feminine,true)
+    subject.masculize(masculine).should eq subject.genderize(masculine,false)
+    subject.masculize(feminine).should eq subject.genderize(feminine,false)
   end
 
   it "ignores punctuation" do
-    subject.feminize("#{MASCULINE}.").should  eq "#{FEMININE}."
-    subject.feminize("#{MASCULINE}-").should  eq "#{FEMININE}-"
-    subject.feminize("!#{MASCULINE}-").should eq "!#{FEMININE}-"
+    subject.feminize("#{masculine}.").should  eq "#{feminine}."
+    subject.feminize("#{masculine}-").should  eq "#{feminine}-"
+    subject.feminize("!#{masculine}-").should eq "!#{feminine}-"
   end
 
   it "doesn't ignore punctuation in 'mr.' and 'ms.'" do
-    mr = 'mr.';  ms = 'ms.'
     subject.feminize(mr).should eq ms
     subject.masculize(ms).should eq mr
   end
 
   it "preserves whitespace" do
-    subject.feminize(" #{MASCULINE}").should  eq " #{FEMININE}"
-    subject.feminize("  #{MASCULINE}").should eq "  #{FEMININE}"
-    subject.feminize("\t#{MASCULINE}").should eq "	#{FEMININE}"
+    subject.feminize(" #{masculine}").should  eq " #{feminine}"
+    subject.feminize("  #{masculine}").should eq "  #{feminine}"
+    subject.feminize("\t#{masculine}").should eq "	#{feminine}"
   end
 
   it "preserves capitalization" do
-    subject.feminize(MASCULINE.capitalize).should eq FEMININE.capitalize
+    subject.feminize(masculine.capitalize).should eq feminine.capitalize
   end
 
   it "preserves upcase" do
-    subject.feminize(MASCULINE.upcase).should eq FEMININE.upcase
-    subject.feminize(MASCULINE.upcase + " blark").should eq "#{FEMININE.upcase} blark"
+    subject.feminize(masculine.upcase).should eq feminine.upcase
+    subject.feminize(masculine.upcase + " blark").should eq "#{feminine.upcase} blark"
   end
 
   it "deals with multi-word strings" do
-    subject.feminize("#{MASCULINE} #{MASCULINE} #{FEMININE}").should eq "#{FEMININE} #{FEMININE} #{FEMININE}"
+    subject.feminize("#{masculine} #{masculine} #{feminine}").should eq "#{feminine} #{feminine} #{feminine}"
   end
 
   it "doesn't change the gender of words with in words" do
-    words_within_words = "#{MASCULINE}ified}"
+    words_within_words = "#{masculine}ified}"
     subject.feminize(words_within_words).should eq words_within_words
   end
 
@@ -87,24 +88,24 @@ describe Genderizr do
     subject.m2f_forms.should eq forms
   end
 
-end
 
-describe String do
+  describe Genderizr::StringMethods do
 
-  before :all do
-    Genderizr.monkey_patch(String)
+    before :all do
+      Genderizr.monkey_patch(String)
+    end
+
+    it "behaves the same" do
+      feminine.feminize.should eq         Genderizr.feminize(feminine)
+      feminine.genderize(false).should eq Genderizr.genderize(feminine,false)
+      feminine.genderize(true).should eq  Genderizr.genderize(feminine,true)
+      feminine.masculize.should eq        Genderizr.masculize(feminine)
+
+      masculine.feminize.should eq         Genderizr.feminize(masculine)
+      masculine.genderize(true).should eq  Genderizr.genderize(masculine,true)
+      masculine.genderize(false).should eq Genderizr.genderize(masculine,false)
+      masculine.masculize.should eq        Genderizr.masculize(masculine)
+    end
+
   end
-
-  it "behaves the same" do
-    FEMININE.feminize.should eq         Genderizr.feminize(FEMININE)
-    FEMININE.genderize(false).should eq Genderizr.genderize(FEMININE,false)
-    FEMININE.genderize(true).should eq  Genderizr.genderize(FEMININE,true)
-    FEMININE.masculize.should eq        Genderizr.masculize(FEMININE)
-
-    MASCULINE.feminize.should eq         Genderizr.feminize(MASCULINE)
-    MASCULINE.genderize(true).should eq  Genderizr.genderize(MASCULINE,true)
-    MASCULINE.genderize(false).should eq Genderizr.genderize(MASCULINE,false)
-    MASCULINE.masculize.should eq        Genderizr.masculize(MASCULINE)
-  end
-
 end

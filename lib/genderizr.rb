@@ -3,7 +3,7 @@ require 'strscan'
 
 module Genderizr
 
-  VERSION = '0.1.3'
+  VERSION = '0.1.4'
 
   module StringMethods
     def feminize; Genderizr.feminize(self); end
@@ -29,11 +29,12 @@ module Genderizr
       word = s.scan(/\w+|\W+/)
 
       result << word && next if word =~ /^\W+$/  # Short circuit if not a word
+      result << word && next if lookup[word.downcase].nil?
 
       capitalized = (word == word.capitalize)
       upcased     = (word == word.upcase)
 
-      genderized = (lookup[word.downcase].nil? ? word : lookup[word.downcase])
+      genderized = lookup[word.downcase]
       genderized = genderized.capitalize if capitalized
       genderized = genderized.upcase if upcased
       result << genderized
