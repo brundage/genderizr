@@ -7,6 +7,8 @@ A ruby gem to genderize strings.
 [![Build Status](https://secure.travis-ci.org/brundage/genderizr.png)](http://travis-ci.org/brundage/genderizr)
 [![Dependency Status](https://gemnasium.com/brundage/genderizr.png)](https://gemnasium.com/brundage/genderizr)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/brundage/genderizr)
+[![Buggerall](https://buggerall.herokuapp.com/bug/genderizr.png)](https://github.com/brundage/buggerall)
+
 
 ## Usage
 
