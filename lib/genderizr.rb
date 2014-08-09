@@ -3,7 +3,7 @@ require 'strscan'
 
 module Genderizr
 
-  VERSION = '0.1.4'
+  VERSION = '0.1.5'
 
   module StringMethods
     def feminize; Genderizr.feminize(self); end
@@ -75,6 +75,7 @@ private
     {
       '♂' => '♀',
       '⚣' => '⚢',
+      'actor' => 'actress',
       'boy' => 'girl',
       'boyish' => 'girlish',
       'boys' => 'girls',
@@ -83,12 +84,16 @@ private
       'cowboy' => 'cowgirl',
       'cowboys' => 'cowgirls',
       'craftsman' => 'craftswoman',
+      'craftsmen' => 'craftswomen',
       'dad' => 'mom',
+      'dads' => 'moms',
       'daddy' => 'mommy',
       'dick' => 'pussy',
+      'dicks' => 'pussies',
       'dude' => 'lady',
       'dudes' => 'ladies',
       'ex-wife' => 'ex-husband',
+      'ex-wives' => 'ex-husbands',
       'father' => 'mother',
       'fathers' => 'mothers',
       'gentleman' => 'lady',
@@ -102,6 +107,7 @@ private
       'king' => 'queen',
       'kings' => 'queens',
       'male' => 'female',
+      'males' => 'females',
       'man' => 'woman',
       'manhood' => 'womanhood',
       'manlier' => 'womanlier',
@@ -110,16 +116,20 @@ private
       'manly' => 'womanly',
       'masculine' => 'feminine',
       'masculinity' => 'femininity',
+      'masculism' => 'feminism',
       'men' => 'women',
       'mister' => 'miss',  # Careful here going from feminine to masculine
       'mr' => 'ms',
       'mr.' => 'ms.',
       'nobleman' => 'noblewoman',
+      'noblemen' => 'noblewomen',
       'patriarch' => 'matriarch',
+      'patriarchs' => 'matriarchs',
       'prince' => 'princess',
       'princes' => 'princesses',
-      'waited' => 'waitressed',
-      'waiter' => 'waitress'
+      'waited' => 'waitressed',  # Careful here too
+      'waiter' => 'waitress',
+      'waiters' => 'waitresses'
     }
   end
 
